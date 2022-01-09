@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx:1.21-alpine 
+    volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+    - '80:80'
+  chat:
+    build: ./flask
+    ports:
+    - "5000"
+    links:
+    - db
+  db:
+    image: mysql:8
+    ports:
+    - "32000:3306"
+    enviroment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    volumes:
+    - ./db:/docker-entrypoint-initdb.d/:ro
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
